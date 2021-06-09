@@ -1,0 +1,37 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+    id 'java-library'
+    id 'java-library-distribution'
+}
+
+group 'ff.paste'
+version '1.0'
+
+tasks.named('jar') {
+    manifest {
+        attributes(
+                'Implementation-Title': project.name,
+                'Implementation-Version': project.version
+        )
+    }
+}
+
+distributions {
+    main {
+        distributionBaseName = project.name
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.5.20-M1'
+    implementation group: 'com.squareup.retrofit2', name: 'converter-moshi', version: '2.9.0'
+    implementation group: 'com.squareup.moshi', name: 'moshi-kotlin', version: '1.12.0'
+    implementation group: 'org.jetbrains.kotlinx', name: 'kotlinx-coroutines-core', version: '1.5.0'
+
+    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.jetbrains.kotlin:kotlin-test-junit'
+}
